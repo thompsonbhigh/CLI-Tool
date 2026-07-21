@@ -1,32 +1,27 @@
 #!/usr/bin/env node
-import arg from 'arg';
+import { Command, Option } from 'commander';
 import chalk from 'chalk';
 import getConfig from '../src/config/config-mgr.js';
 import start from '../src/commands/start.js';
 import createLogger from '../src/logger.js';
 const logger = createLogger('bin');
+const program = new Command();
 
 try {
-    const args = arg({
-        '--start': Boolean,
-        '--build': Boolean,
-    });
+    program
+        .name('tool')
+        .description('CLI for setting up node projects')
+        .version('0.0.1');
 
-    logger.debug('Received args', args);
+    program.command('init')
+        .description('Creates tool configuration')
+        .action((options) => {
+            const config = getConfig();
+            start(config);
+        });
 
-    if (args['--start']) {
-        const config = getConfig();
-        start(config);
-    }
+    program.parse();
+
 } catch (e) {
     logger.warning(e.message);
-    console.log();
-    usage();
-}
-
-function usage() {
-    console.log(`${chalk.whiteBright('tool [CMD]')}
-    ${chalk.greenBright('--start')}\tStarts the app
-    ${chalk.greenBright('--build')}\tBuilds the app    
-    `);
 }
