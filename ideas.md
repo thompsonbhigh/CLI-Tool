@@ -3,8 +3,6 @@ Tool that helps set up node.js project skeletons
 
 tool init
 - create config file
-
-tool run
 - create an index/server.js
 - create a routes folder
 - create a src folder
