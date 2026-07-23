@@ -1,0 +1,8 @@
+import { Router } from 'express';
+import { get{{PascalName}} } from '../controllers/{{FileName}}.controller.js';
+
+const router = Router();
+
+router.get('/', get{{PascalName}});
+
+export default router;

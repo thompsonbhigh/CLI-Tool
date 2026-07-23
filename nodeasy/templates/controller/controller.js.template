@@ -1,0 +1,5 @@
+export async function get{{Name}}(req, res) {
+    res.json({
+        message: '{{Name}} controller works'
+    });
+}

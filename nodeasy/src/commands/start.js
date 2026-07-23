@@ -797,22 +797,7 @@ vite.config.ts.timestamp-*
     "license": "ISC"
 }`));
 
-        const indexData = new Uint8Array(Buffer.from(
-`import express from 'express';
-import 'dotenv/config';
-dotenv.config();
-
-const app = express();
-app.use(express.json());
-
-app.get('/', (req, res) => {
-    res.send('Server here!');
-});
-
-app.listen(3000, () => {
-    console.log('Server running on http://localhost:3000');
-});`
-        ));
+        const indexData = new Uint8Array(Buffer.from('// main file'));
 
         async function npmInst() {
             const { stdout, stderr } = await exec('npm i express');
